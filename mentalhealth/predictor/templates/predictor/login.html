@@ -1,0 +1,44 @@
+{% extends 'predictor/base.html' %}
+{% block title %}Login — MindWell{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto fade-in">
+  <div class="text-center mb-6">
+    <h1 class="text-2xl font-semibold text-gray-900 mb-2">Welcome Back</h1>
+    <p class="text-gray-600">Sign in to continue your wellness journey</p>
+  </div>
+
+  <div class="card-hover rounded-xl shadow-md p-7">
+    <form method="post">
+      {% csrf_token %}
+      <div class="space-y-4">
+        <div>
+          {{ form.username.label_tag }}
+          {{ form.username }}
+          {{ form.username.errors }}
+        </div>
+        <div>
+          {{ form.password.label_tag }}
+          {{ form.password }}
+          {{ form.password.errors }}
+        </div>
+      </div>
+      
+      {% if form.non_field_errors %}
+        <div class="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <p class="text-red-700 text-sm">{{ form.non_field_errors|first }}</p>
+        </div>
+      {% endif %}
+      
+      <button type="submit" class="btn-primary w-full text-white py-3 rounded-lg font-medium mt-6 shadow-md">
+        Sign In
+      </button>
+    </form>
+    
+    <p class="text-center text-gray-600 mt-5 text-sm">
+      Don't have an account? 
+      <a href="{% url 'signup' %}" class="text-blue-600 font-medium hover:underline">Sign up</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

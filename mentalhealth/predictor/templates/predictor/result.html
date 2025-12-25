@@ -1,0 +1,42 @@
+{% extends 'predictor/base.html' %}
+{% block title %}Assessment Result — MindWell{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto fade-in">
+  <div class="text-center mb-6">
+    <h1 class="text-2xl font-semibold text-gray-900 mb-2">Assessment Complete</h1>
+    <p class="text-gray-600">Your mental health risk level is:</p>
+  </div>
+
+  <div class="card-hover rounded-xl shadow-md p-10 text-center mb-6">
+    {% if risk == 'Low' %}
+      <span class="inline-block badge-low px-8 py-3 rounded-full text-lg font-semibold mb-6">
+        Low Risk
+      </span>
+    {% elif risk == 'Medium' %}
+      <span class="inline-block badge-medium px-8 py-3 rounded-full text-lg font-semibold mb-6">
+        Medium Risk
+      </span>
+    {% else %}
+      <span class="inline-block badge-high px-8 py-3 rounded-full text-lg font-semibold mb-6">
+        High Risk
+      </span>
+    {% endif %}
+
+    <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
+      <p class="text-gray-700 text-sm leading-relaxed">
+        This is not a clinical diagnosis. If you're struggling, please reach out to a mental health professional.
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row justify-center gap-3">
+    <a href="{% url 'home' %}" class="btn-secondary bg-white text-gray-700 border border-gray-300 py-3 px-6 rounded-lg font-medium text-center shadow-sm">
+      Take Another Assessment
+    </a>
+    <a href="{% url 'history' %}" class="btn-primary text-white py-3 px-6 rounded-lg font-medium text-center shadow-md">
+      View History
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'predictor/base.html' %}
+{% block title %}Mental Wellness Check-In — MindWell{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto fade-in">
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-semibold text-gray-900 mb-2">Mental Wellness Check-In</h1>
+    <p class="text-gray-600 max-w-2xl mx-auto">
+      Reflect on your current state. Your data is private and used only for your personal history.
+    </p>
+  </div>
+
+  <div class="card-hover rounded-xl shadow-md p-8">
+    <form method="post">
+      {% csrf_token %}
+      
+      <!-- Personal -->
+      <div class="mb-7">
+        <h2 class="section-title">About You</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            {{ form.age.label_tag }}
+            {{ form.age }}
+            {{ form.age.errors }}
+          </div>
+          <div>
+            {{ form.gender.label_tag }}
+            {{ form.gender }}
+            {{ form.gender.errors }}
+          </div>
+          <div>
+            {{ form.employment_status.label_tag }}
+            {{ form.employment_status }}
+            {{ form.employment_status.errors }}
+          </div>
+          <div>
+            {{ form.work_environment.label_tag }}
+            {{ form.work_environment }}
+            {{ form.work_environment.errors }}
+          </div>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="mb-7">
+        <h2 class="section-title">Mental Health Background</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            {{ form.mental_health_history.label_tag }}
+            {{ form.mental_health_history }}
+            {{ form.mental_health_history.errors }}
+          </div>
+          <div>
+            {{ form.seeks_treatment.label_tag }}
+            {{ form.seeks_treatment }}
+            {{ form.seeks_treatment.errors }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Lifestyle -->
+      <div class="mb-7">
+        <h2 class="section-title">Lifestyle & Patterns</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            {{ form.sleep_hours.label_tag }}
+            {{ form.sleep_hours }}
+            {{ form.sleep_hours.errors }}
+          </div>
+          <div>
+            {{ form.physical_activity_days.label_tag }}
+            {{ form.physical_activity_days }}
+            {{ form.physical_activity_days.errors }}
+          </div>
+          <div class="md:col-span-2">
+            {{ form.stress_level.label_tag }}
+            {{ form.stress_level }}
+            {{ form.stress_level.errors }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Scores -->
+      <div class="mb-7">
+        <h2 class="section-title">Self-Assessment Scores</h2>
+        <p class="text-sm text-gray-600 mb-4 bg-blue-50 p-3 rounded-lg border border-blue-100">
+          <strong>Depression:</strong> 0–30 • <strong>Anxiety:</strong> 0–21 • <strong>Social Support & Productivity:</strong> 0–100
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            {{ form.depression_score.label_tag }}
+            {{ form.depression_score }}
+            {{ form.depression_score.errors }}
+          </div>
+          <div>
+            {{ form.anxiety_score.label_tag }}
+            {{ form.anxiety_score }}
+            {{ form.anxiety_score.errors }}
+          </div>
+          <div>
+            {{ form.social_support_score.label_tag }}
+            {{ form.social_support_score }}
+            {{ form.social_support_score.errors }}
+          </div>
+          <div>
+            {{ form.productivity_score.label_tag }}
+            {{ form.productivity_score }}
+            {{ form.productivity_score.errors }}
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <button type="submit" class="btn-primary text-white font-medium py-3 px-10 rounded-lg shadow-md">
+          Get My Risk Assessment
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
